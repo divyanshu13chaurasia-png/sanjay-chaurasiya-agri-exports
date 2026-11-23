@@ -8,7 +8,7 @@ app.secret_key = 'change-this-before-deployment'
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': '',  # Set your MySQL password here if you have one
+    'password': 'root',  # Set your MySQL password here if you have one
     'database': 'sanjay_agri_exports'
 }
 
