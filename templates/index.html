@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sanjay Chaurasiya Agri Exports — agricultural produce sourcing and wholesale enquiries from India.">
+  <title>Sanjay Chaurasiya Agri Exports | Rooted in Trust. Growing Globally.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="Sanjay Chaurasiya Agri Exports home"><span class="brand-mark"><span>S</span><span>C</span></span><span class="brand-text">SANJAY CHAURASIYA<small>AGRI EXPORTS</small></span></a>
+  <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+  <nav class="nav"><a href="#home">Home</a><a href="#about">About</a><a href="#products">Products</a><a href="#approach">Our Approach</a><a href="#contact" class="nav-cta">Buyer Enquiry ↗</a></nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">AGRICULTURAL SOURCING · INDIA</p>
+    <h1>Rooted in trust.<br><em>Growing globally.</em></h1>
+    <p class="hero-copy">Connecting fresh agricultural produce with wholesale buyers through trusted sourcing and a relationship-first approach.</p>
+    <div class="hero-actions"><a class="button button-gold" href="#products">Explore our produce <span>↗</span></a><a class="button button-outline" href="#contact">Start an enquiry</a></div>
+    <div class="hero-note"><span class="note-line"></span><span>30+ Years of Agricultural Wholesale Experience</span></div>
+  </div>
+  <div class="hero-side-label">FRESH PRODUCE · SOURCED WITH CARE</div>
+</section>
+<section class="intro section" id="about">
+  <div class="section-label">01 / WHO WE ARE</div>
+  <div class="intro-grid"><h2>A grounded business.<br><span>A global ambition.</span></h2><div><p class="lead">Built on experience in agricultural wholesale, our business is focused on connecting produce sourcing with buyers looking for dependable supply relationships.</p><p>We are taking our next step toward international markets—starting with a focused range of vegetables and agricultural products from India.</p><a class="text-link" href="#contact">Talk to our team ↗</a></div></div>
+</section>
+<section class="family-legacy section" id="family">
+    <div class="section-label">OUR FAMILY · OUR LEGACY</div>
+
+    <div class="family-legacy-heading">
+        <h2>Rooted in Family.<br><span>Built on Trust.</span></h2>
+        <p>Our journey in agricultural trading is built on family values,
+        years of experience, hard work, and relationships that span generations.</p>
+    </div>
+
+    <div class="family-legacy-grid">
+
+        <div class="family-member">
+            <div class="family-photo">
+                <img class="grandfather-photo" src="{{ url_for('static', filename='images/dada.jpeg') }}"
+                     alt="Kapil Dev Chaurasia">
+            </div>
+            <h3>Kapil Dev Chaurasia</h3>
+            <p class="family-role">Our Family Roots</p>
+            <p>Our family roots are built on dedication, values, hard work,
+            and the importance of honest relationships.</p>
+        </div>
+
+        <div class="family-member">
+            <div class="family-photo">
+                <img src="{{ url_for('static', filename='images/papa.jpg') }}"
+                     alt="Sanjay Chaurasia">
+            </div>
+            <h3>Sanjay Chaurasia</h3>
+            <p class="family-role">Carrying the Legacy Forward</p>
+            <p>With over 20 years of agricultural wholesale experience,
+            continuing our family tradition and building connections
+            with opportunities across global markets.</p>
+        </div>
+
+    </div>
+
+    <div class="family-legacy-footer">
+        From our family roots to global opportunities.
+    </div>
+</section>
+<section class="products section" id="products">
+  <div class="section-label">02 / OUR PRODUCE</div>
+  <div class="section-heading"><div><h2>Products we <span>source.</span></h2><p>Explore our current product focus. Availability is confirmed against each buyer enquiry.</p></div><span class="product-count">{{ products|length }} PRODUCTS</span></div>
+  <div class="product-grid">
+  {% for product in products %}
+    <article class="product-card"><div class="product-image"><img src="{{ url_for('static', filename=product.image_path) }}" alt="{{ product.product_name }}" loading="lazy"><span class="image-index">0{{ loop.index }}</span></div><div class="product-info"><p class="product-category">{{ product.category or 'Fresh Produce' }}</p><h3>{{ product.product_name }}</h3><p>{{ product.description or 'Product details and supply availability can be discussed with our team.' }}</p><a href="#contact" class="product-link" data-product="{{ product.product_name }}">Enquire about this product <span>↗</span></a></div></article>
+  {% endfor %}
+  </div>
+</section>
+<section class="approach section" id="approach"><div class="section-label">03 / OUR APPROACH</div><div class="approach-grid"><h2>Simple, transparent<br><span>trade conversations.</span></h2><div class="steps"><div class="step"><span>01</span><div><h3>Tell us what you need</h3><p>Share the product, destination, quantity and your preferred specifications.</p></div></div><div class="step"><span>02</span><div><h3>We review your enquiry</h3><p>Our team reviews sourcing and availability before discussing next steps.</p></div></div><div class="step"><span>03</span><div><h3>Discuss supply details</h3><p>Product details, packaging, pricing and logistics are discussed and confirmed individually.</p></div></div></div></div></section>
+<section class="contact section" id="contact"><div class="contact-grid"><div><div class="section-label">04 / BUYER ENQUIRIES</div><h2>Let’s start a<br><span>conversation.</span></h2><p class="contact-copy">Tell us about your sourcing requirement. Share your destination market and product details, and our team can follow up.</p><div class="contact-points"><div><span>01</span> Wholesale & bulk enquiries</div><div><span>02</span> Product sourcing discussions</div><div><span>03</span> International buyer enquiries</div></div></div><form action="{{ url_for('enquiry') }}" method="post" class="enquiry-form"><div class="form-title">SEND AN ENQUIRY <span>↗</span></div><div class="form-row"><label>Your name<input name="name" required placeholder="Full name"></label><label>Business / company<input name="company" placeholder="Company name"></label></div><div class="form-row"><label>Email address<input type="email" name="email" required placeholder="name@company.com"></label><label>Destination country<input name="country" placeholder="Country"></label></div><div class="form-row"><label>Product<select name="product"><option value="">Select a product</option>{% for product in products %}<option>{{ product.product_name }}</option>{% endfor %}</select></label><label>Estimated quantity<input name="quantity" placeholder="e.g. 5 tonnes"></label></div><label>Message<textarea name="message" required rows="4" placeholder="Tell us about your requirement, specifications or questions..."></textarea></label><button type="submit" class="button button-gold form-submit">Send enquiry <span>↗</span></button><p class="form-footnote">Your information is used only to respond to your enquiry.</p></form></div>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flash-wrap">{% for category, message in messages %}<p class="flash {{ category }}">{{ message }}</p>{% endfor %}</div>{% endif %}{% endwith %}
+</section>
+</main>
+<footer class="footer"><div class="footer-main"><div class="brand footer-brand"><span class="brand-mark"><span>S</span><span>C</span></span><span class="brand-text">SANJAY CHAURASIYA<small>AGRI EXPORTS</small></span></div><p>Rooted in Trust. Growing Globally.</p><a href="#home">Back to top ↑</a></div><div class="footer-bottom"><span>© <span id="year"></span> Sanjay Chaurasiya Agri Exports</span><span>India · Agricultural Produce</span></div></footer>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
